@@ -28,16 +28,16 @@ def list_all_items():
 def select(function_code):
     # Create list_item
     if function_code == "C":
-        input_item = user_input("Input item: ")
+        input_item = raw_input("Input item: ")
         create(input_item)
     # Read item
     elif function_code == "R":
         length = len(checklist)
         # Remember that item_index must actually exist or our program will crash.
         while True:
-            input_index = user_input("Index Number(0-" + str(length-1) + ")? ")
-            if input_index < length and input_index >= 0:
-                read(item_index)
+            item_index = raw_input("Index Number(0-" + str(length-1) + ")? ")
+            if int(item_index) < length and int(item_index) >= 0:
+                read(int(item_index))
                 break
             print "You have made an invalid choice, try again."
     # Print all items
