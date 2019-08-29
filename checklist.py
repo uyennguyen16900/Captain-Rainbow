@@ -22,35 +22,61 @@ def list_all_items():
         # print("%S %S" % (index, list_item))
         index += 1
 
-#NOT FINISHED mark_completed
+#NOT FINISHED
+def mark_completed(index):
+    item = checklist[index]
+    if item[2] == "√ ":
+        print("You already marked this item.")
+    else:
+        checklist[index] = "√ " + item
 
 
 def select(function_code):
     # Create list_item
-    if function_code == "C":
-        input_item = raw_input("Input item: ")
+    if function_code.upper() == "C":
+        input_item = user_input("Input item: ")
         create(input_item)
+
     # Read item
-    elif function_code == "R":
+    elif function_code.upper() == "R":
         length = len(checklist)
         while True:
-            item_index = raw_input("Index Number(0-" + str(length-1) + ")? ")
+            item_index = user_input("Index Number(0-" + str(length-1) + ")? ")
             if int(item_index) < length and int(item_index) >= 0:
                 read(int(item_index))
                 break
-            print "You have made an invalid choice, try again."
+            print("You have made an invalid choice, try again.")
+
+    #remove
+    elif function_code.upper() == "E":
+        length = len(checklist)
+        while True:
+            item_index = user_input("Which item to cancel? (X to cancel) ")
+            if item_index.upper() == "X":
+                break
+            elif int(item_index) < length and int(item_index) >= 0:
+                destroy(int(item_index))
+                break
+            print("You have made an invalid choice, try again.")
+
+
     # Print all items
-    elif function_code == "P":
+    elif function_code.upper() == "P":
         list_all_items()
+
+    # Mark completed
+    elif function_code.upper() == "M":
+        mark_completed(function_code)
+
     # Catch all
-    elif function_code == "Q":
+    elif function_code.upper() == "Q":
         return False
     else:
         print("Unknow Option")
     return True
 
 def user_input(prompt):
-    user_input = raw_input(prompt)
+    user_input = input(prompt)
     return user_input
 
 
@@ -82,5 +108,5 @@ test()
 running = True
 while running:
     selection = user_input(
-        "Press C to add to list, R to Read from list, P to display list, and Q to quit: ")
+        "Press C to add to list, R to Read from list, E to remove, P to display list, M to mark as completed, and Q to quit: ")
     running = select(selection)
