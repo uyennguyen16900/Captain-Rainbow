@@ -27,13 +27,16 @@ def mark_completed(index):
     item = checklist[index]
     if item[0] == "√":
         print("You already marked this item.")
+        input = user_input("Do you want to unmark it? Y/N ")
+        if input.upper() == "Y":
+            checklist[index] = item[1:]
     else:
-        checklist[index] = "√ " + item
+        checklist[index] = "√" + item
 
 
 def select(function_code):
     # Create list_item
-    if function_code.upper() == "C":
+    if function_code.upper() == "A":
         input_item = user_input("Input item: ")
         create(input_item)
 
@@ -43,7 +46,7 @@ def select(function_code):
         while True:
             item_index = user_input("Index Number(0-" + str(length-1) + ")? ")
             if int(item_index) < length and int(item_index) >= 0:
-                read(int(item_index))
+                print(read(int(item_index)))
                 break
             print("You have made an invalid choice, try again.")
 
@@ -114,5 +117,5 @@ test()
 running = True
 while running:
     selection = user_input(
-        "Press C to add to list, R to Read from list, E to remove, P to display list, M to mark as completed, and Q to quit: ")
+        "Press A to add to list, R to read from list, E to remove, P to display list, M to mark as completed (press again to unmark), and Q to quit: ")
     running = select(selection)
