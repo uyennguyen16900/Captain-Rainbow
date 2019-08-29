@@ -33,7 +33,6 @@ def select(function_code):
     # Read item
     elif function_code == "R":
         length = len(checklist)
-        # Remember that item_index must actually exist or our program will crash.
         while True:
             item_index = raw_input("Index Number(0-" + str(length-1) + ")? ")
             if int(item_index) < length and int(item_index) >= 0:
@@ -44,35 +43,44 @@ def select(function_code):
     elif function_code == "P":
         list_all_items()
     # Catch all
+    elif function_code == "Q":
+        return False
     else:
         print("Unknow Option")
+    return True
 
 def user_input(prompt):
-    # the input function will display a message in the terminal
-    # and wait for user input.
-    user_input = input(prompt)
+    user_input = raw_input(prompt)
     return user_input
 
+
 def test():
-    create("purple sox")
-    create("red cloak")
+    # create("purple sox")
+    # create("red cloak")
+    #
+    # print(read(0))
+    # # mark_completed(0)
+    # print(read(1))
+    #
+    # update(0, "purple socks")
+    #
+    # destroy(1)
+    #
+    # print(read(0))
 
-    print(read(0))
-    # mark_completed(0)
-    print(read(1))
-
-    update(0, "purple socks")
-
-    destroy(1)
-
-    print(read(0))
-
-    select("C")
-
-    list_all_items()
-
-    select("R")
+    # select(selection)
 
     list_all_items()
 
+    # select(selec)
+
+    # list_all_items()
+    # name = user_input("Enter name: ")
+    # print(name)
 test()
+
+running = True
+while running:
+    selection = user_input(
+        "Press C to add to list, R to Read from list, P to display list, and Q to quit: ")
+    running = select(selection)
