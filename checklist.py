@@ -25,7 +25,7 @@ def list_all_items():
 #NOT FINISHED
 def mark_completed(index):
     item = checklist[index]
-    if item[2] == "√ ":
+    if item[0] == "√":
         print("You already marked this item.")
     else:
         checklist[index] = "√ " + item
@@ -51,7 +51,7 @@ def select(function_code):
     elif function_code.upper() == "E":
         length = len(checklist)
         while True:
-            item_index = user_input("Which item to cancel? (X to cancel) ")
+            item_index = user_input("Which item to cancel(0-" + str(length-1) + "? (X to cancel) ")
             if item_index.upper() == "X":
                 break
             elif int(item_index) < length and int(item_index) >= 0:
@@ -66,7 +66,13 @@ def select(function_code):
 
     # Mark completed
     elif function_code.upper() == "M":
-        mark_completed(function_code)
+        length = len(checklist)
+        while True:
+            item_index = user_input("Which item to mark as completed(0-" + str(length-1) + ")? ")
+            if int(item_index) < length and int(item_index) >= 0:
+                mark_completed(int(item_index))
+                break
+            print("You have made an invalid choice, try again.")
 
     # Catch all
     elif function_code.upper() == "Q":
