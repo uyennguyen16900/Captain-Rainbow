@@ -1,3 +1,8 @@
+#For color  credited by stack over flow
+import sys
+from termcolor import colored
+
+
 checklist = list()
 
 # CREATE
@@ -26,8 +31,8 @@ def list_all_items():
 def mark_completed(index):
     item = checklist[index]
     if item[0] == "√":
-        print("You already marked this item.")
-        input = user_input("Do you want to unmark it? Y/N ")
+        print(colored("You already marked this item.", "red"))
+        input = user_input(colored("Do you want to unmark it? Y/N ", "red"))
         if input.upper() == "Y":
             checklist[index] = item[1:]
     else:
@@ -48,24 +53,27 @@ def select(function_code):
             if int(item_index) < length and int(item_index) >= 0:
                 print(read(int(item_index)))
                 break
-            print("You have made an invalid choice, try again.")
+            print(colored("You have made an invalid choice, try again.", "red"))
 
     #remove
     elif function_code.upper() == "E":
         length = len(checklist)
         while True:
-            item_index = user_input("Which item to cancel(0-" + str(length-1) + "? (X to cancel) ")
+            item_index = user_input("Which item to cancel(0-" + str(length-1) + "? (X to cancel) ", "cyan")
             if item_index.upper() == "X":
                 break
             elif int(item_index) < length and int(item_index) >= 0:
                 destroy(int(item_index))
                 break
-            print("You have made an invalid choice, try again.")
+            print(colored("You have made an invalid choice, try again.", "red"))
 
 
     # Print all items
     elif function_code.upper() == "P":
-        list_all_items()
+        if len(checklist) == 0:
+            print("No item to display!")
+        else:
+            list_all_items()
 
     # update
     elif function_code.upper() == "U":
@@ -76,7 +84,7 @@ def select(function_code):
             if int(item_index) < length and int(item_index) >= 0:
                 update(int(item_index), item)
                 break
-            print("You have made an invalid choice, try again.")
+            print(colored("You have made an invalid choice, try again.", "red"))
 
 
     # Mark completed
@@ -87,7 +95,7 @@ def select(function_code):
             if int(item_index) < length and int(item_index) >= 0:
                 mark_completed(int(item_index))
                 break
-            print("You have made an invalid choice, try again.")
+            print(colored("You have made an invalid choice, try again.", "red"))
 
     # Catch all
     elif function_code.upper() == "Q":
@@ -128,6 +136,6 @@ test()
 
 running = True
 while running:
-    selection = user_input(
-        "Press A to add to list, R to read from list, E to remove, P to display list, U to update, M to mark as completed (press again to unmark), and Q to quit: ")
+    selection = user_input(colored(
+        "Press A to add to list, R to read from list, E to remove, P to display list, U to update, M to mark as completed (press again to unmark), and Q to quit: ", "blue"))
     running = select(selection)
