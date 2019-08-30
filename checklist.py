@@ -1,7 +1,6 @@
-#For color  credited by stack over flow
+#For more information about adding colors to texts, I read from https://pypi.org/project/termcolor/
 import sys
 from termcolor import colored
-
 
 checklist = list()
 
