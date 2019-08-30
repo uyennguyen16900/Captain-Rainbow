@@ -67,6 +67,18 @@ def select(function_code):
     elif function_code.upper() == "P":
         list_all_items()
 
+    # update
+    elif function_code.upper() == "U":
+        length = len(checklist)
+        while True:
+            item_index = user_input("Index Number(0-" + str(length-1) + ")? ")
+            item = user_input("Update it to: ")
+            if int(item_index) < length and int(item_index) >= 0:
+                update(int(item_index), item)
+                break
+            print("You have made an invalid choice, try again.")
+
+
     # Mark completed
     elif function_code.upper() == "M":
         length = len(checklist)
@@ -117,5 +129,5 @@ test()
 running = True
 while running:
     selection = user_input(
-        "Press A to add to list, R to read from list, E to remove, P to display list, M to mark as completed (press again to unmark), and Q to quit: ")
+        "Press A to add to list, R to read from list, E to remove, P to display list, U to update, M to mark as completed (press again to unmark), and Q to quit: ")
     running = select(selection)
