@@ -37,6 +37,7 @@ def mark_completed(index):
         checklist[index] = "√" + item
 
 def select(function_code):
+    length = len(checklist)
     # Create list_item
     if function_code.upper() == "A":
         input_item = user_input("Input item: ")
@@ -44,7 +45,6 @@ def select(function_code):
 
     # Read item
     elif function_code.upper() == "R":
-        length = len(checklist)
         # if key R is pressed when the list is empty
         if length == 0:
             print(colored("No items to read.", "red"))
@@ -59,7 +59,6 @@ def select(function_code):
 
     #remove
     elif function_code.upper() == "E":
-        length = len(checklist)
         if length == 0:
             print(colored("No items to remove.", "red"))
         else:
@@ -81,7 +80,6 @@ def select(function_code):
 
     # update
     elif function_code.upper() == "U":
-        length = len(checklist)
         if length == 0:
             print(colored("No items to upate.", "red"))
         else:
@@ -97,7 +95,7 @@ def select(function_code):
     elif function_code.upper() == "M":
         length = len(checklist)
         if length == 0:
-            print(colored("No items.", "red"))
+            print(colored("No items to mark.", "red"))
         else:
             while True:
                 item_index = user_input("Which item to mark as completed(0-" + str(length-1) + ")? ")
