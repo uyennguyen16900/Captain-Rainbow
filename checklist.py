@@ -26,7 +26,6 @@ def list_all_items():
         # print("%S %S" % (index, list_item))
         index += 1
 
-#NOT FINISHED
 def mark_completed(index):
     item = checklist[index]
     if item[0] == "√":
@@ -36,7 +35,6 @@ def mark_completed(index):
             checklist[index] = item[1:]
     else:
         checklist[index] = "√" + item
-
 
 def select(function_code):
     # Create list_item
@@ -74,7 +72,6 @@ def select(function_code):
                     break
                 print(colored("You have made an invalid choice, try again.", "red"))
 
-
     # Print all items
     elif function_code.upper() == "P":
         if len(checklist) == 0:
@@ -90,12 +87,11 @@ def select(function_code):
         else:
             while True:
                 item_index = user_input("Index Number(0-" + str(length-1) + ")? ")
-                item = user_input("Update it to: ")
                 if int(item_index) < length and int(item_index) >= 0:
+                    item = user_input("Update it to: ")
                     update(int(item_index), item)
                     break
                 print(colored("You have made an invalid choice, try again.", "red"))
-
 
     # Mark completed
     elif function_code.upper() == "M":
@@ -121,7 +117,7 @@ def user_input(prompt):
     user_input = input(prompt)
     return user_input
 
-
+#TEST
 def test():
     # create("purple sox")
     # create("red cloak")
