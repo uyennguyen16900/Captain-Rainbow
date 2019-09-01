@@ -47,54 +47,68 @@ def select(function_code):
     # Read item
     elif function_code.upper() == "R":
         length = len(checklist)
-        while True:
-            item_index = user_input("Index Number(0-" + str(length-1) + ")? ")
-            if int(item_index) < length and int(item_index) >= 0:
-                print(read(int(item_index)))
-                break
-            print(colored("You have made an invalid choice, try again.", "red"))
+        # if key R is pressed when the list is empty
+        if length == 0:
+            print(colored("No items to read.", "red"))
+        # runs when there is(are) item(s) in the list
+        else:
+            while True:
+                item_index = user_input("Index Number(0-" + str(length-1) + ")? ")
+                if int(item_index) < length and int(item_index) >= 0:
+                    print(read(int(item_index)))
+                    break
+                print(colored("You have made an invalid choice, try again.", "red"))
 
     #remove
     elif function_code.upper() == "E":
         length = len(checklist)
-        while True:
-            item_index = user_input("Which item to cancel(0-" + str(length-1) + "? (X to cancel) ", "cyan")
-            if item_index.upper() == "X":
-                break
-            elif int(item_index) < length and int(item_index) >= 0:
-                destroy(int(item_index))
-                break
-            print(colored("You have made an invalid choice, try again.", "red"))
+        if length == 0:
+            print(colored("No items to remove.", "red"))
+        else:
+            while True:
+                item_index = user_input("Which item to cancel(0-" + str(length-1) + ")? (X to cancel) ")
+                if item_index.upper() == "X":
+                    break
+                elif int(item_index) < length and int(item_index) >= 0:
+                    destroy(int(item_index))
+                    break
+                print(colored("You have made an invalid choice, try again.", "red"))
 
 
     # Print all items
     elif function_code.upper() == "P":
         if len(checklist) == 0:
-            print("No item to display!")
+            print(colored("No items to display.", "red"))
         else:
             list_all_items()
 
     # update
     elif function_code.upper() == "U":
         length = len(checklist)
-        while True:
-            item_index = user_input("Index Number(0-" + str(length-1) + ")? ")
-            item = user_input("Update it to: ")
-            if int(item_index) < length and int(item_index) >= 0:
-                update(int(item_index), item)
-                break
-            print(colored("You have made an invalid choice, try again.", "red"))
+        if length == 0:
+            print(colored("No items to upate.", "red"))
+        else:
+            while True:
+                item_index = user_input("Index Number(0-" + str(length-1) + ")? ")
+                item = user_input("Update it to: ")
+                if int(item_index) < length and int(item_index) >= 0:
+                    update(int(item_index), item)
+                    break
+                print(colored("You have made an invalid choice, try again.", "red"))
 
 
     # Mark completed
     elif function_code.upper() == "M":
         length = len(checklist)
-        while True:
-            item_index = user_input("Which item to mark as completed(0-" + str(length-1) + ")? ")
-            if int(item_index) < length and int(item_index) >= 0:
-                mark_completed(int(item_index))
-                break
-            print(colored("You have made an invalid choice, try again.", "red"))
+        if length == 0:
+            print(colored("No items.", "red"))
+        else:
+            while True:
+                item_index = user_input("Which item to mark as completed(0-" + str(length-1) + ")? ")
+                if int(item_index) < length and int(item_index) >= 0:
+                    mark_completed(int(item_index))
+                    break
+                print(colored("You have made an invalid choice, try again.", "red"))
 
     # Catch all
     elif function_code.upper() == "Q":
