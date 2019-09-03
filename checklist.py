@@ -73,7 +73,7 @@ def select(function_code):
 
     # Print all items
     elif function_code.upper() == "P":
-        if len(checklist) == 0:
+        if length == 0:
             print(colored("No items to display.", "red"))
         else:
             list_all_items()
